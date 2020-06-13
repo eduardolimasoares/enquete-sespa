@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <title>Datamazon</title>
+  </head>
+  <body>
+    <div class="container mt-4" style="height: 500px;">
+      <h5 class="text-center">Resultados</h5>
+      <div class="h-50" style="height: 100px;">
+        <p>
+          1) Polícia Federal fez busca e apreensão na secretaria da Saúde (SESPA), do governo Helder Barbalho, qual a
+          sua opinião?
+        </p>
+        <canvas id="myChartUm"></canvas>
+        <p>A - Foi perseguição do presidente Bolsonaro</p>
+        <p>B - A polícia federal investigou e descobriu que havia indícios de crimes</p>
+        <p>C - Não sei</p>
+        <br /><br />
+        <p>
+          2) O governador Helder Barbalho declarou, pela internet, que foi enganado pela empresa SKN, que vendeu os
+          respiradores. Você acredita no que ele disse?
+        </p>
+        <canvas id="myChartDois"></canvas>
+        <p>A - Sim, o Helder foi sincero quanto diz que foi enganado</p>
+        <p>B - Não, o governo devia saber que a empresa não era do ramo de equipamentos médicos</p>
+        <p>C - Não sei</p>
+        <br /><br />
+        <p>3) Na sua opinião, qual a origem dos 750 mil reais encontrados na casa do assessor da Sespa?</p>
+        <canvas id="myChartTres"></canvas>
+        <p>A - Propina pela compra dos respiradores</p>
+        <p>B - Propina por outras compras realizados pela Sespa</p>
+        <p>C - Não sei</p>
+        <br /><br />
+        <p>
+          4) Não é o primeiro caso de investigação de irregularidades em licitações. Na Seduc, houve a denúncia da
+          compra de cestas básica por 70 milhões de reais que o governador anulou.Em ambos os casos – Seduc e Sespa – o
+          estado recuperou o dinheiro. Você acha que o governador Helder tem combatido a corrupção na sua gestão?
+        </p>
+        <canvas id="myChartQuatro"></canvas>
+        <p>A - Sim, faz o dever de casa quando encontra indícios de corrupção e manda cancelar e devolver o dinheiro</p>
+        <p>B - Não, ele esperar a polícia apurar e a imprensa divulgar para depois resolver.</p>
+        <p>C - Não sei</p>
+        <br /><br />
+        <p>5) Você votaria em um candidato a prefeito apoiado pelo governador Helder Barbalho nas eleições de 2020?</p>
+        <canvas id="myChartCinco"></canvas>
+        <p>A - Votaria com certeza</p>
+        <p>B - Poderia votar</p>
+        <p>C - Não votaria de jeito nenhum</p>
+        <p>D - Não sei</p>
+      </div>
+    </div>
+
+    <script>
+      var ctxUm = document.getElementById('myChartUm').getContext('2d');
+      var ctxDois = document.getElementById('myChartDois').getContext('2d');
+      var ctxTres = document.getElementById('myChartTres').getContext('2d');
+      var ctxQuatro = document.getElementById('myChartQuatro').getContext('2d');
+      var ctxCinco = document.getElementById('myChartCinco').getContext('2d');
+      var myChartUm = new Chart(ctxUm, {
+          type: 'horizontalBar',
+          data: {
+              labels: ['A', 'B', 'C'],
+              datasets: [{
+                  label: '',
+                  barPercentage: 1.0,
+                  categoryPercentage: 1.0,
+                  barThickness: 9,
+                  maxBarThickness: 8,
+                  minBarLength: 2,
+                  data: [<%- totalQuestaoUm %>],
+                  // data: [12, 19, 3, 5, 2, 3],
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 206, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                      'rgba(255, 159, 64, 0.2)'
+                  ],
+                  borderColor: [
+                      'rgba(255, 99, 132, 1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(153, 102, 255, 1)',
+                      'rgba(255, 159, 64, 1)'
+                  ],
+                  borderWidth: 2
+              }]
+          },
+          options: {
+              maintainAspectRatio: false,
+              layout:{
+                  padding: {
+                      left: 0,
+                      right:0,
+                      top: 0,
+                      bottom: 0
+                  }
+              },
+              scales: {
+                  xAxes: [{
+                      stacked: true,
+                      offset: true,
+                      gridLines: {offsetGridLines: true, display: true},
+                      ticks: { beginAtZero: true }
+                  }],
+                  yAxes:[{
+                      stacked: true,
+                      offset: true,
+                      gridLines: {
+                          display: true
+                      }
+                  }]
+              }
+          }
+      });
+
+      var myChartDois = new Chart(ctxDois, {
+            type: 'horizontalBar',
+            data: {
+                labels: ['A', 'B', 'C'],
+                datasets: [{
+                    label: '  ',
+                    barPercentage: 1.0,
+                    categoryPercentage: 1.0,
+                    barThickness: 9,
+                    maxBarThickness: 8,
+                    minBarLength: 2,
+                    data: [<%- totalQuestaoDois %>],
+                    // data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                layout: {
+                    padding: {
+                        left: 0,
+                        right: 0,
+                        top: 0,
+                        bottom: 0
+                    }
+                },
+                scales: {
+                    xAxes: [{
+                        stacked: true,
+                        offset: true,
+                        gridLines: { offsetGridLines: true, display: true },
+                        ticks: { beginAtZero: true }
+                    }],
+                    yAxes: [{
+                        stacked: true,
+                        offset: true,
+                        gridLines: {
+                            display: true
+                        }
+                    }]
+                }
+            }
+        });
+        var myChartTres = new Chart(ctxTres, {
+                type: 'horizontalBar',
+                data: {
+                    labels: ['A', 'B', 'C'],
+                    datasets: [{
+                        label: ' ',
+                        barPercentage: 1.0,
+                        categoryPercentage: 1.0,
+                        barThickness: 9,
+                        maxBarThickness: 8,
+                        minBarLength: 2,
+                        data: [<%- totalQuestaoTres %>],
+                        // data: [12, 19, 3, 5, 2, 3],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    layout: {
+                        padding: {
+                            left: 0,
+                            right: 0,
+                            top: 0,
+                            bottom: 0
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                            stacked: true,
+                            offset: true,
+                            gridLines: { offsetGridLines: true, display: true },
+                            ticks: { beginAtZero: true }
+                        }],
+                        yAxes: [{
+                            stacked: true,
+                            offset: true,
+                            gridLines: {
+                                display: true
+                            }
+                        }]
+                    }
+                }
+            });
+            var myChartQuatro = new Chart(ctxQuatro, {
+                    type: 'horizontalBar',
+                    data: {
+                        labels: ['A', 'B', 'C'],
+                        datasets: [{
+                            label: '  ',
+                            barPercentage: 1.0,
+                            categoryPercentage: 1.0,
+                            barThickness: 9,
+                            maxBarThickness: 8,
+                            minBarLength: 2,
+                            data: [<%- totalQuestaoQuatro %>],
+                            // data: [12, 19, 3, 5, 2, 3],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        layout: {
+                            padding: {
+                                left: 0,
+                                right: 0,
+                                top: 0,
+                                bottom: 0
+                            }
+                        },
+                        scales: {
+                            xAxes: [{
+                                stacked: true,
+                                offset: true,
+                                gridLines: { offsetGridLines: true, display: true },
+                                ticks: { beginAtZero: true }
+                            }],
+                            yAxes: [{
+                                stacked: true,
+                                offset: true,
+                                gridLines: {
+                                    display: true
+                                }
+                            }]
+                        }
+                    }
+                });
+                var myChartCinco = new Chart(ctxCinco, {
+                        type: 'horizontalBar',
+                        data: {
+                            labels: ['A', 'B', 'C', 'D'],
+                            datasets: [{
+                                label: '  ',
+                                barPercentage: 1.0,
+                                categoryPercentage: 1.0,
+                                barThickness: 9,
+                                maxBarThickness: 8,
+                                minBarLength: 2,
+                                data: [<%- totalQuestaoCinco %>],
+                                // data: [12, 19, 3, 5, 2, 3],
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)'
+                                ],
+                                borderWidth: 2
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            layout: {
+                                padding: {
+                                    left: 0,
+                                    right: 0,
+                                    top: 0,
+                                    bottom: 0
+                                }
+                            },
+                            scales: {
+                                xAxes: [{
+                                    stacked: true,
+                                    offset: true,
+                                    gridLines: { offsetGridLines: true, display: true },
+                                    ticks: { beginAtZero: true }
+                                }],
+                                yAxes: [{
+                                    stacked: true,
+                                    offset: true,
+                                    gridLines: {
+                                        display: true
+                                    }
+                                }]
+                            }
+                        }
+                    });
+    </script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
